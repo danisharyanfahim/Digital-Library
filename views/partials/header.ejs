@@ -1,0 +1,19 @@
+<!-- The partials folder is used to group smaller ejs files which
+     can be imported into other ejs files and also used multiple
+     times, so duplcalting code isn't necessary, in this one we'll
+     just dump all of the links. Basically, any type of html code,
+     or file that will be used multiple times in other files, should
+     be in the partials folder. Think of it like a function, and the
+     partials folder like a folder that stores functions-->
+
+
+<header>
+    <nav> <!-- nav tag is used to store links -->
+        <a href="/">Digital Library</a> <!-- a (meaning anchor) tag is used for creating links -->
+        <ul> <!-- Unorder list tag -->
+            <li><a href="/authors">Authors</a></li> <!-- List item tag -->
+            <li><a href="/authors/new">Add Author</a></li> <!-- List item tag -->
+        </ul>
+    </nav>
+</header>
+    

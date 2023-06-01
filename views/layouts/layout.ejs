@@ -10,11 +10,18 @@
 </head>
 
 <body>
-    Before
     <br>
-    <%- body %> <!-- This is EJS code, the word body is used to include the content/body of every other ejs file -->
+    <%- include('../partials/header.ejs') %> <!-- 1  -->
+    <%- include('../partials/errorMessage.ejs') %> 
+    <%- body %> <!-- This is EJS code, the word 'body' is used to include the content/body of other ejs files depending on the URL -->
         <br>
-        After
 </body>
 
 </html>
+
+<!-- 1)two'.'s takes us out 2 levels, into the layouts folder, and then the views folder, then /partials/header
+    takes us into the partials folder and then the header.ejs file inside, unlike a JS file, an EJS file needs
+    to have the file type added on to the very end, so /partials/header would work in a .js file, but since
+    this is a .ejs file it needs to be /partials/header.ejs. Also since this is a partials file, with the way 
+    it is imported it will be rendered everytime, so this means that the links will always be there on the top, 
+    regardless of the URL  -->

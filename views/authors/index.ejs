@@ -6,7 +6,7 @@
 </form>
 <br>
 <% authors.forEach(author => { %>
-    <div><% author.name %></div>
+    <div><%= author.name %></div> <!-- < % = > or < % - > both work here -->
 <% }) %> 
 <!-- This loops through all of the authors in the database and brings them up in a list -->
 

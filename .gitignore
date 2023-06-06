@@ -1,3 +1,4 @@
 # Files to ignore, env contains sensitive information, and node_modules is unneccsary and includes lots of files that aren't needed
 .env
 node_modules
+public/uploads

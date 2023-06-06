@@ -1,0 +1,44 @@
+<div>
+     <label>Title</label>
+     <input type="text" name="title" value="<%= book.title %>">
+</div>
+
+<div>
+     <label>Author</label>
+     <select name="author">
+          <% authors.forEach(author=> { %>
+               <% if (author.id===book.author) {%>
+                    <option selected="selected" label="<%= author.name %>" value="<%= author.id %>">
+               <% } else { %>
+                    <option label="<%= author.name %>" value="<%= author.id %>">
+               <% } %>
+           <% })%>
+     </select>
+</div>
+
+<div>
+     <label>Publish Date</label>
+     <input type="date" name="publishDate"
+          value="<%= book.publishDate == null ? '' :book.publishDate.toISOString().split('T')[0] %>"> <!-- 1 -->
+</div>
+
+<div>
+     <label>Page Count</label>
+     <input type="number" name="pageCount" min="1" value="<%= book.pageCount %>"> <!-- 1 -->
+</div>
+
+<div>
+     <label>Cover</label>
+     <input type="file" name="cover"> <!-- 1 -->
+</div>
+
+<div>
+     <label>Description</label>
+     <textarea name="description"><%= book.description %></textarea>
+</div>
+
+<!-- 1) I will have to look at what the hell this means, I think it returns the date, converts it to a string, 
+but since it also returns the time, split ('T') basically makes it a substring which doesn't include the time,
+since there is a 'T' in the string between date and time, and the [0] means to ruturn the first part of the split
+string, which in this case is the date, so if I put in [1] it would return the time
+-->

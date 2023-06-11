@@ -15,7 +15,7 @@ const bookRouter = require('./routes/books') //1
 I will have to learn about each and every one of them to understand how to make a good website.
 Basic HTML, JS, and CSS were the first steps. Then came more advanced JS, and then using VS code, then came Node,
 React & XML/JSX, and Express, then MongoDB/Mongoose I have all of these new libraries to understand as well such as Git
-and Github, Heroku, JQuery, EJS, Nodemon, DotENV, Body Parser, Multer, EJS Layouts, Paths, FS, ImageMimetypes and then
+and Github, Heroku, JQuery, EJS, Nodemon, Filepond, DotENV, Body Parser, Multer, EJS Layouts, Paths, FS, ImageMimetypes and then
 many other ones such as Lodash, React Icons, Pug, Cors, Socket, Colors, SQL. After this comes using unity/c# as well as
 python and AI/machine learning into it, then after that comes learning Next.js, Typescript, mobile devlopment using 
 java and android studio and V8, as much as I can about APIs, Devops, Cloud admins and service now, angular, using

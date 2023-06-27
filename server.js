@@ -9,6 +9,7 @@ const bodyParser = require('body-parser') //hyphens are used to seperate words i
 const indexRouter = require('./routes/index')//Imports the router, the file name begins with ./ and then the folder name, and a new / for every sub file or folder within
 const authorRouter = require('./routes/authors') //1
 const bookRouter = require('./routes/books') //1
+const methodOverride = require('method-override')
 
 
 /* I have an understading of almost everything except all of these other fucking libraries, which are new to me
@@ -40,6 +41,7 @@ FS, and paths are built into node
 app.set('view engine', 'ejs') //Sets view/template engine to ejs, template engines create/render the webpage, so they are needed in express //***
 app.set('views', __dirname + '/views') //sets view folder name to /views //***
 app.set('layout', 'layouts/layout') //***
+app.use(methodOverride('_method')) //For adding Delete and Put functionality to forms
 app.use(expressLayouts)//Uses express layouts
 app.use(express.static('public'))//Uses the public folder
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false })) //Will need to look up this shit on the bodyParser API reference/documentation, the first parameter increases the upload size //***

@@ -1,0 +1,15 @@
+<h2>Edit Author</h2>
+<form action="/authors/<%=  author.id %>?_method=PUT" method="POST"> <!--1)  -->
+    <%- include('_form_fields') %>
+    <a href="/authors/<%= author.id %>">Cancel</a> <!-- 2) -->
+    <button type="submit">Update</button> <!-- submit button, which is common on most forms, used to submit info to server -->
+</form>
+
+<!--  1) This is a form tag, used to group a bunch of inputs, takes in an action attribute which is a link
+     the information goes to, the method attribute corresponds to an HTTP method, either POST or GET, only
+    forms can be used to make POST requests, and POST requests mean adding information to the server from  
+    the client side. This also specifically refers to the post method in the authors.js file in the route
+
+    2) All this is a cancel link, which sends us back to the /authors page
+
+-->

@@ -23,25 +23,25 @@ router.get('/', async (req, res) => {
     if (req.query.publishedBefore != null && req.query.publishedBefore != '') {
         query = query.lte('publishDate', req.query.publishedBefore)
     }
-    if (req.query.publishedAfter != null && req.query.publishedAfter!= '') {
+    if (req.query.publishedAfter != null && req.query.publishedAfter != '') {
         query = query.gte('publishDate', req.query.publishedAfter)
     }
     try {
         const books = await query.exec()
-        res.render('books/index',{
+        res.render('books/index', {
             books: books,
             searchOptions: req.query
         })
     } catch {
         res.redirect('/')
     }
-    
+
 
 })
 
 // New Book Route
 router.get('/new', async (req, res) => {
-    renderNewPage(res, new Book())
+    renderFormPage(res, new Book(), 'new', true)
 })
 
 //Create Book Route
@@ -57,17 +57,17 @@ router.post('/', async (req, res) => { //*** has to match the name of the input 
 
     saveCover(book, req.body.cover)
 
-    try{
+    try {
         //console.log(book)
         const newBook = await book.save() //This isn't working for some reason, well now it does and I don't know why
         //console.log('done')
-        res.redirect('books')
-    } catch (error){
+        res.redirect(`books/${newBook.id}`)
+    } catch (error) {
         // if (book.coverImageName != null) {
         //     removeBookCover(book.coverImageName)
         // }
         console.log(error.message)
-        renderNewPage(res, book, true)
+        renderFormPage(res, book, 'new', true)
     }
 })
 
@@ -77,29 +77,101 @@ router.post('/', async (req, res) => { //*** has to match the name of the input 
 //     })
 // }
 
-async function renderNewPage(res, book, hasError = false){
-    try{
+//Show Book Route
+router.get('/:id', async (req, res) => {
+    try {
+        const book = await Book.findById(req.params.id).populate('author').exec()
+        res.render('books/show', { book: book })
+    } catch {
+        res.redirect('/')
+    }
+})
+
+//Edit Book Route
+router.get('/:id/edit', async (req, res) => {
+    try {
+        const book = await Book.findById(req.params.id)
+        renderFormPage(res, book, 'edit')
+    } catch {
+        res.redirect('/')
+    }
+})
+
+//Update Book Route
+router.put('/:id', async (req, res) => {
+    let book
+    try {
+        book = await Book.findById(req.params.id)
+        book.title = req.body.title
+        book.author = req.body.author
+        book.publishDate = new Date(req.body.publishDate)
+        book.pageCount = req.body.pageCount
+        book.description = req.body.description
+        if (req.body.cover != null && req.body.cover !== '') {
+            saveCover(book, req.body.cover)
+            console.log(req.body.cover)
+        }
+        await book.save()
+        res.redirect(`/books/${book.id}`)
+    } catch{
+        if (book != null) {
+            renderFormPage(res, book, 'edit', true)
+        } else {
+            res.redirect('/')
+        }
+    }
+})
+
+//Delete Route
+router.delete('/:id', async (req, res) => {
+    let book
+    try {
+        book = await Book.findById(req.params.id)
+        await book.deleteOne()
+        res.redirect(`/books`)
+    } catch{
+        if (book != null) {
+            res.render('books/show', {
+                book: book,
+                errorMessage: 'Could not remove book'
+            })
+        } else {
+            res.redirect('/')
+        }
+    }
+})
+
+
+async function renderFormPage(res, book, form, hasError = false) {
+    try {
         const authors = await Author.find({})
         const params = {
             authors: authors,
             book: book,
         }
-        if (hasError) params.errorMessage = 'Error Creating Book'
-        res.render('books/new', params)
+        if (hasError) {
+            if (form === 'edit'){
+                params.errorMessage = 'Error Updating Book'
+            } else if (form === 'new'){
+                params.errorMessage = 'Error Creating Book'
+            }
+        }
+        res.render(`books/${form}`, params)
     } catch {
         res.redirect('books')
     }
-    
+
 }
 
 function saveCover(book, coverEncoded) {
     if (coverEncoded == null) return
     const cover = JSON.parse(coverEncoded)
-    if (cover != null && imageMimeTypes.includes(cover.type)){
+    if (cover != null && imageMimeTypes.includes(cover.type)) {
         book.coverImage = new Buffer.from(cover.data, 'base64')
         book.coverImageType = cover.type
     }
 }
+
 
 
 module.exports = router /* Every single file you wish to import into another must be exported, for router files use this line */

@@ -1,0 +1,28 @@
+@import 'shared/fonts.css';
+@import 'shared/variables.css';
+@import 'shared/buttons.css';
+@import 'shared/header.css'; /* Needs to be imported after variables.css since it uses a variable defined in it */
+
+:root{
+    font-family: 'Gotham Rounded';
+    font-size: 20px;
+    color: var(--color-text-light);
+}
+
+*, *::before, *::after{
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to right, var(--color-background-dark), var(--color-background-light));
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto; /*Adds equal margin on left and right of container  */
+    margin-bottom: 3rem; /* This makes sure that the container never touches the bottom of the screen */
+}
+
+.inner-container {
+    margin: 0 2rem; /* 0 on the top and bottom and 2rem on the left and right */
+}

@@ -1,21 +1,23 @@
-<h2>Search Authors</h2>
+<h2 class="page-header">Search Authors</h2>
 <form action="/authors" method="GET">
     <label>Name</label>
     <input type="text" name="name" value="<%= searchOptions.name  %>">
     <button type="submit">Search</button>
 </form>
 <br>
-<% authors.forEach(author => { %>
-    <div><%= author.name %></div> <!-- < % = > or < % - > both work here -->
-    <a href="/authors/<%= author.id %>">View</a>
-    <a href="/authors/<%= author.id %>/edit">Edit</a>
-    <%- include('../partials/deleteForm', { url: `/authors/${author.id}`}) %>
-<% }) %> 
-<!-- This loops through all of the authors in the database and brings them up in a list -->
+<% authors.forEach(author=> { %>
+    <div class="btn-row">
+        <div><%= author.name %></div> <!-- < % = > or < % - > both work here -->
+        <a class="btn btn-primary" href="/authors/<%= author.id %>">View</a>
+        <a class="btn btn-primary" href="/authors/<%= author.id %>/edit">Edit</a>
+        <%- include('../partials/deleteForm', { url: `/authors/${author.id}`}) %>
+    </div>
+<% }) %>
+        <!-- This loops through all of the authors in the database and brings them up in a list -->
 
-<!-- The < % % > allows insertion of JS code into ejs, putting an = at the end of the first percent 
+        <!-- The < % % > allows insertion of JS code into ejs, putting an = at the end of the first percent 
 sign is for assignment, and a - at the end is for output/displaying/rendering  -->
 
-<!-- 1) <!-- The last part is used to trigger the methodOverride library, since forms only allow for
+        <!-- 1) <!-- The last part is used to trigger the methodOverride library, since forms only allow for
      get and post requests, this allows it to delete. It's also because a get or post method can't be used
-    because google will delete all of the links if a delete method is attempted using a post request or get --> 
+    because google will delete all of the links if a delete method is attempted using a post request or get -->

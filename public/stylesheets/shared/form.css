@@ -1,7 +1,7 @@
 :root {
     --form-label-font-size: 1.2rem;
-    --form-input-border-color: hsl(var(--color-base-hue), 100%, 31%);
-    --form-input-background-color: hsl(var(--color-base-hue), 100%, 50%);
+    --form-input-border-color: hsl(var(--color-base-hue), 100%, 50%);
+    --form-input-background-color: hsl(var(--color-base-hue), 100%, 31%);
     --form-input-border-color-light: hsl(var(--color-base-hue), 100%, 80%);
 }
 
@@ -65,7 +65,7 @@
 
 .filepond--panel-root {
     background-color:  var(--form-input-background-color);
-    border: 1px solid var(--form-input-background-color);
+    border: 1px solid var(--form-input-border-color);
 }
 
 .filepond--drop-label {

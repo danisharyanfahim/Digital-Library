@@ -21,13 +21,8 @@
 </div>           
 </form>
 <br>
-<div>
-    <% books.forEach(book => { %>
-        <a href="/books/<%= book.id %>">
-            <img height="150" width="100" src="<%= book.coverImagePath %>">
-        </a>
-    <% }) %>
-</div>
+<%- include('../partials/bookGrid', {books: books, large: true}) %>
+
 <!-- This loops through all of the authors in the database and brings them up in a list -->
 
 <!-- The < % % > allows insertion of JS code into ejs, putting an = at the end of the first percent 

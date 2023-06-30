@@ -3,6 +3,8 @@
 @import 'shared/buttons.css';
 @import 'shared/header.css'; /* Needs to be imported after variables.css since it uses a variable defined in it */
 @import 'shared/form.css';
+@import 'shared/author.css';
+@import 'shared/book.css';
 
 :root{
     font-family: 'Gotham Rounded';
@@ -26,4 +28,8 @@ body {
 
 .inner-container {
     margin: 0 2rem; /* 0 on the top and bottom and 2rem on the left and right */
+}
+
+.error-message {
+    color: hsl(var(--color-danger-hue), 100%, 50%)
 }

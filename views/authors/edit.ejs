@@ -1,8 +1,10 @@
 <h2 class="page-header">Edit Author</h2>
 <form action="/authors/<%=  author.id %>?_method=PUT" method="POST"> <!--1)  -->
     <%- include('_form_fields') %>
-    <a href="/authors/<%= author.id %>">Cancel</a> <!-- 2) -->
-    <button type="submit">Update</button> <!-- submit button, which is common on most forms, used to submit info to server -->
+    <div class="form-row form-row-end btn-row">
+        <a class="btn btn-danger" href="/authors/<%= author.id %>">Cancel</a> <!-- 2) -->
+        <button class="btn btn-primary" type="submit">Update</button> <!-- submit button, which is common on most forms, used to submit info to server -->
+    </div>
 </form>
 
 <!--  1) This is a form tag, used to group a bunch of inputs, takes in an action attribute which is a link

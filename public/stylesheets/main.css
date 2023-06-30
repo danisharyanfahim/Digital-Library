@@ -2,6 +2,7 @@
 @import 'shared/variables.css';
 @import 'shared/buttons.css';
 @import 'shared/header.css'; /* Needs to be imported after variables.css since it uses a variable defined in it */
+@import 'shared/form.css';
 
 :root{
     font-family: 'Gotham Rounded';
